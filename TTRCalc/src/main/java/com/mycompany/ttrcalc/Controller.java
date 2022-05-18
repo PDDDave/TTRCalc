@@ -1,0 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mycompany.ttrcalc;
+
+/**
+ *
+ * @author David
+ */
+public class Controller {
+    View v = new View();
+    public void calcStart(){
+        v.printString(v.a.train);
+        v.printString(v.a.mTitle);
+        v.printString(v.a.sTitle);
+    }
+}
