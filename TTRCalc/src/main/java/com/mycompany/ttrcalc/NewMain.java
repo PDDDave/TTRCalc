@@ -16,7 +16,7 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Controller c = new Controller();
         c.calcStart();
     }

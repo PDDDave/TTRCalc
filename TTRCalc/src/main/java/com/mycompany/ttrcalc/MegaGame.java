@@ -9,7 +9,11 @@ package com.mycompany.ttrcalc;
  *
  * @author David
  */
-public class MegaGame {
+public class MegaGame extends ClassicGame {
+    
+    public MegaGame(int pCount){
+        super(pCount);
+    }
     public void addBonus(Player lPlayer, Player tPlayer){
         int lBonus = 10;
         int tBonus = 15;

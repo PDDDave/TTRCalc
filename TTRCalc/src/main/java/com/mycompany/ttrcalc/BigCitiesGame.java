@@ -9,15 +9,10 @@ package com.mycompany.ttrcalc;
  *
  * @author David
  */
-public class USA1910Game extends ClassicGame {
-
-    public USA1910Game(int pCount) {
-        super(pCount);
-    }
+public class BigCitiesGame extends ClassicGame {
     
-    public void addBonus (Player tPlayer){
-        int tBonus = 15;
-        tPlayer.setpScore(tPlayer.getpScore() + tBonus);
+    public BigCitiesGame(int pCount) {
+        super(pCount);
     }
     
 }

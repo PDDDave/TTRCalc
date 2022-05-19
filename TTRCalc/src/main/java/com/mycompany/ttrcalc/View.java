@@ -49,4 +49,45 @@ public class View {
         System.out.println(outPut);
     }
     
+     /**
+     * This method pauses the application until the user presses the enter key
+     */
+    public void enterToCont(){
+        System.out.println("\n\nPress enter to continue....");
+        keyboard.nextLine();
+    }
+    
+    /*
+    * This method waits for one second
+    */
+    public void waitASec() throws InterruptedException{
+        Thread.sleep(1000);
+    }
+    
+    /**
+     * This method is used to read user input as a char
+     * @return Returns the input as char
+     */ 
+    public char inChar(){
+        char c = keyboard.next().toUpperCase().charAt(0);
+        clearBuf();
+        return c;
+    }
+    
+    /**
+     * This method is used to read user input as an int
+     * @return Returns the input as int
+     */
+    public int inInt(){
+        int i = keyboard.nextInt();
+        clearBuf();
+        return i;
+    }
+    
+     /**
+     * This method is used to clear the buffer after a scanner .next() method is called
+     */
+    public void clearBuf(){
+        keyboard.nextLine();
+    }
 }

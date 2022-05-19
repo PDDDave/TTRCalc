@@ -12,6 +12,10 @@ package com.mycompany.ttrcalc;
 public class ClassicGame {
     
     private int playerCount = 0;
+    
+    public ClassicGame(int pCount){
+        playerCount = pCount;
+    }
 
     public void addBonus(Player IPlayer){
         int IBonus = 10;

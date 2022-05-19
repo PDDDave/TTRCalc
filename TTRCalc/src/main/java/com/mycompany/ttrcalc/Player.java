@@ -29,6 +29,13 @@ public class Player {
         
         return pScore;
     }
+    
+    @Override public String toString(){
+        String message = "Player Name: \t" + pName +"\n"
+                       + "Player Score:\t" + pScore +"\n";
+        
+        return message;
+    }
 
     public String getpName() {
         return pName;
