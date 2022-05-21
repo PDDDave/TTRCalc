@@ -5,6 +5,8 @@
  */
 package com.mycompany.ttrcalc;
 
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author David
@@ -16,7 +18,7 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException {
         Controller c = new Controller();
         c.calcStart();
     }

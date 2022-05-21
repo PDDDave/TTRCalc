@@ -5,6 +5,12 @@
  */
 package com.mycompany.ttrcalc;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -15,7 +21,40 @@ public class View {
     Scanner keyboard = new Scanner(System.in);
     Art a = new Art();
     
+    /**
+     * Reads data from file into an array list and returns the array list back to the calling method.
+     * @param fileName
+     * @return
+     * @throws FileNotFoundException 
+     */
+    public ArrayList<String> readArray(String fileName) throws FileNotFoundException{
+        File file = new File(fileName);
+        Scanner inputFile = new Scanner(file);
+        ArrayList<String> inData = new ArrayList<String>();
+
+
+        while(inputFile.hasNext()){
+            String line = inputFile.nextLine();
+            inData.add(line);
+        }
+
+        inputFile.close();
+        return inData;
+    }
     
+    public void writeToFile(String fileName,String contents){
+        try {
+          FileWriter fw = new FileWriter(fileName,true);
+          BufferedWriter bw = new BufferedWriter(fw);
+          bw.write(contents);
+          bw.newLine();
+          bw.close();
+          
+          printString("Successfully wrote to the file.");
+        } catch (IOException e) {
+          System.out.println("An error occurred.");
+        }
+    }
     
      /**
      * This method formats a String to start with a capital letter.

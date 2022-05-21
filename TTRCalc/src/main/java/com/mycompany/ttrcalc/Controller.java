@@ -5,6 +5,9 @@
  */
 package com.mycompany.ttrcalc;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
 /**
  *
  * @author David
@@ -13,12 +16,38 @@ public class Controller {
     View v = new View();
     ClassicGame game;
     Player[] allPlayers;
-    public void calcStart() throws InterruptedException{
+    String fileName = "C:\\Code\\halloffame.txt";
+    
+    public void calcStart() throws InterruptedException, FileNotFoundException{
+        int choice;
+        boolean again = false;
         v.printString(v.a.train);
-        v.printString(v.a.mTitle);
         v.printString(v.a.sTitle);
         v.enterToCont();
-        gameSetup();
+
+        
+        do{
+            v.printString("Would you like to Play a new game(1), view the Hall of fame?(2) or quit(3)");
+            choice = v.inInt();
+            switch (choice){
+            case 1:
+                again = false;
+                gameSetup();
+                break;
+            case 2:
+                again = true;
+                hallOfFame();
+                break;
+            case 3:
+                v.printString(v.a.thanks);
+                System.exit(0);
+            default:
+                v.printString("Unknown Value");
+                break;
+        }
+        }while(again == true);
+        
+        //gameSetup();
     }
 
     private void gameSetup() throws InterruptedException {
@@ -27,7 +56,7 @@ public class Controller {
         
         v.printString(v.a.gSetup);
         v.waitASec();
-        v.printString("How many Players? (1-4)");
+        v.printString("How many Players? (2-4)");
         players = v.inInt();
         v.printString("What game type are you playing?(1 - 4)\n"
                 + "1 - Classic\n2 -USA 1910\n3 - Big Cities\n4 - Mega");
@@ -74,7 +103,7 @@ public class Controller {
         boolean cont = true;
         String action = "";
         String[] pNames;
-        String quickHelp = "Enter a command (List, A Player's name, All, Help):";
+        String quickHelp = "Enter a command (List, A Player's name, All, Help, Game Over):";
         String controlls = "When a player scores or draws a new ticket you will need to enter that information into the app.\n"
                 + "In order to do that you will need to enter the player's name in order to view"
                 + "thier current score stats as well as record a new score!\n"
@@ -242,6 +271,7 @@ public class Controller {
         Player lPlayer = allPlayers[0];
         Player tPlayer = allPlayers[0];
         Player winner = allPlayers[0];
+        String contents;
         boolean cont = false;
         int choice =0;
         int highScore=0;
@@ -408,10 +438,32 @@ public class Controller {
         v.printString(v.a.winnerIs);
         v.printString(winner.getpName() + "!!!!");
         v.printString("Final Score:\t" + winner.getpScore());
+        v.printString("..recording win..");
         v.enterToCont();
+        contents = winner.getpName() +","+winner.getpScore() ;
+        v.writeToFile(fileName, contents);
         v.printString(v.a.thanks);
         //exits the application
         System.exit(0);
+    }
+
+    private void hallOfFame() throws FileNotFoundException {
+        //read from file the names of previous winners into array for display
+        ArrayList<String> hallOfFame = new ArrayList<String>();
+        String line;
+        String player;
+        String score;
+        hallOfFame = v.readArray(fileName);
+        
+        v.printString(v.a.hall);
+        v.printString("Winner\t\tScore");
+        for(int i=0;i<hallOfFame.size();i++){
+            String[]parts;
+            line = hallOfFame.get(i);
+            parts = line.split(",");
+            v.printString(parts[0] + "\t\t" + parts[1]);
+        }
+        v.enterToCont();
     }
     
 
