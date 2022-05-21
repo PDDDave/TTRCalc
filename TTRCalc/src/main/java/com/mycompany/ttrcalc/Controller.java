@@ -272,6 +272,7 @@ public class Controller {
         Player tPlayer = allPlayers[0];
         Player winner = allPlayers[0];
         String contents;
+        char finalChoice;
         boolean cont = false;
         int choice =0;
         int highScore=0;
@@ -393,9 +394,8 @@ public class Controller {
                         }
                 }while(cont == true);
                 //finish adding player bonuses
-                game.addBonus(lPlayer);
                 
-                                v.printString("Which player had the most Destination tickets?");
+                v.printString("Which player had the most Destination tickets?");
                 for(int i=0;i<allPlayers.length;i++){
                     v.printString((i+1) + ".\t" + allPlayers[i].getpName());
                 }
@@ -425,6 +425,7 @@ public class Controller {
                         break;
                         }
                 }while(cont == true);
+                game.addBonus(lPlayer);
                 game.addBonus(tPlayer);
                 break;
         }
@@ -442,6 +443,11 @@ public class Controller {
         v.enterToCont();
         contents = winner.getpName() +","+winner.getpScore() ;
         v.writeToFile(fileName, contents);
+        v.printString("Would you like to multiply the winning score recursivley? Y|N");
+        finalChoice = v.inChar();
+        if(finalChoice == 'Y'){
+            recursiveVictory(winner.getpScore());
+        }
         v.printString(v.a.thanks);
         //exits the application
         System.exit(0);
@@ -464,6 +470,26 @@ public class Controller {
             v.printString(parts[0] + "\t\t" + parts[1]);
         }
         v.enterToCont();
+    }
+
+    private void recursiveVictory(int winScore) {
+        int num;
+        v.printString("How much would you like to multiple the winning score of " + winScore + "? (Enter number):" );
+        num = v.inInt();
+        v.printString("Winning score: " + winScore + 
+                "\nMultiplied by: " + num +
+                "\n_______________________\n"+
+                rMultiply(winScore, num));
+    }
+    
+    private int rMultiply(int x, int y) {
+           
+        if (x == 0 || y == 0){
+            return 0;  //base case,
+        }
+        else{
+            return y + rMultiply( y , x -1);
+        }
     }
     
 
