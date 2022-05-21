@@ -12,14 +12,15 @@ package com.mycompany.ttrcalc;
 public class ClassicGame {
     
     private int playerCount = 0;
+    private int gameType = 1;
     
     public ClassicGame(int pCount){
         playerCount = pCount;
     }
 
-    public void addBonus(Player IPlayer){
-        int IBonus = 10;
-        IPlayer.setpScore(IBonus);
+    public void addBonus(Player lPlayer){
+        int lBonus = 10;
+        lPlayer.setpScore(lPlayer.getpScore() + lBonus);
     }
     public int getPlayerCount() {
         return playerCount;
@@ -27,6 +28,14 @@ public class ClassicGame {
 
     public void setPlayerCount(int playerCount) {
         this.playerCount = playerCount;
+    }
+
+    public int getGameType() {
+        return gameType;
+    }
+
+    public void setGameType(int gameType) {
+        this.gameType = gameType;
     }
     
     

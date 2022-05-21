@@ -78,6 +78,7 @@ public class Controller {
         String controlls = "When a player scores or draws a new ticket you will need to enter that information into the app.\n"
                 + "In order to do that you will need to enter the player's name in order to view"
                 + "thier current score stats as well as record a new score!\n"
+                + "Once the game is over, Enter 'Game Over' to apply bonuses and final scoring!\n"
                 + "(Type HELP to see this message again)";
         
         
@@ -110,6 +111,9 @@ public class Controller {
             case "all":
                 allPlayers();
                 v.enterToCont();
+                break;
+            case "game over":
+                gameOver();
                 break;
             default:
                 if(isPlayer(action)){
@@ -233,4 +237,182 @@ public class Controller {
         v.printString(player.getpName() + "'s score is now: " + player.getpScore());
         v.enterToCont();
     }
+
+    private void gameOver() {
+        Player lPlayer = allPlayers[0];
+        Player tPlayer = allPlayers[0];
+        Player winner = allPlayers[0];
+        boolean cont = false;
+        int choice =0;
+        int highScore=0;
+        int remain;
+        int destinationPoints;
+        v.printString(v.a.gameOver);
+        v.enterToCont();
+        //add destination tickets
+        for(int i=0;i<allPlayers.length;i++){
+            v.printString("How many points were " + allPlayers[i].getpName()+ "'s SCORED destination tickets worth?");
+            destinationPoints = v.inInt();
+            v.printString("How many points were " + allPlayers[i].getpName()+"'s NOT-SCORED destination tickets worth (enter 0 if none)?:");
+            remain = v.inInt();
+           
+            allPlayers[i].setpScore((allPlayers[i].getpScore() + destinationPoints) - remain);
+        }
+        
+        //calculate bonuses and winner
+        switch(game.getGameType()){
+            case 1:
+                v.printString("Which player had the longest road?");
+                for(int i=0;i<allPlayers.length;i++){
+                    v.printString((i+1) + ".\t" + allPlayers[i].getpName());
+                }
+                choice = v.inInt();
+                do{
+                    cont = false;
+                    switch(choice){
+                    case 1:
+                        v.printString(allPlayers[0].getpName() + " has the longest road");
+                        lPlayer = allPlayers[0];
+                        break;
+                    case 2:
+                        v.printString(allPlayers[1].getpName() + " has the longest road");
+                        lPlayer = allPlayers[1];
+                        break;
+                    case 3:
+                        v.printString(allPlayers[2].getpName() + " has the longest road");
+                        lPlayer = allPlayers[2];
+                        break;
+                    case 4:
+                        v.printString(allPlayers[3].getpName() + " has the longest road.");
+                        lPlayer = allPlayers[3];
+                        break; 
+                    default:
+                        v.printString("Unknown value.");
+                        cont = true;
+                        break;
+                        }
+                }while(cont == true);
+                //finish adding player bonuses
+                game.addBonus(lPlayer);
+                break;
+            case 2:
+                v.printString("Which player had the most Destination tickets?");
+                for(int i=0;i<allPlayers.length;i++){
+                    v.printString((i+1) + ".\t" + allPlayers[i].getpName());
+                }
+                choice = v.inInt();
+                do{
+                    cont = false;
+                    switch(choice){
+                    case 1:
+                        v.printString(allPlayers[0].getpName() + " has the most destination tickets!");
+                        tPlayer = allPlayers[0];
+                        break;
+                    case 2:
+                        v.printString(allPlayers[1].getpName() + " has the most destination tickets!");
+                        tPlayer = allPlayers[1];
+                        break;
+                    case 3:
+                        v.printString(allPlayers[2].getpName() + " has the most destination tickets!");
+                        tPlayer = allPlayers[2];
+                        break;
+                    case 4:
+                        v.printString(allPlayers[3].getpName() + " has the most destination tickets!");
+                        tPlayer = allPlayers[3];
+                        break; 
+                    default:
+                        v.printString("Unknown value.");
+                        cont = true;
+                        break;
+                        }
+                }while(cont == true);
+                game.addBonus(tPlayer);
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                v.printString("Which player had the longest road?");
+                for(int i=0;i<allPlayers.length;i++){
+                    v.printString((i+1) + ".\t" + allPlayers[i].getpName());
+                }
+                choice = v.inInt();
+                do{
+                    cont = false;
+                    switch(choice){
+                    case 1:
+                        v.printString(allPlayers[0].getpName() + " has the longest road");
+                        lPlayer = allPlayers[0];
+                        break;
+                    case 2:
+                        v.printString(allPlayers[1].getpName() + " has the longest road");
+                        lPlayer = allPlayers[1];
+                        break;
+                    case 3:
+                        v.printString(allPlayers[2].getpName() + " has the longest road");
+                        lPlayer = allPlayers[2];
+                        break;
+                    case 4:
+                        v.printString(allPlayers[3].getpName() + " has the longest road.");
+                        lPlayer = allPlayers[3];
+                        break; 
+                    default:
+                        v.printString("Unknown value.");
+                        cont = true;
+                        break;
+                        }
+                }while(cont == true);
+                //finish adding player bonuses
+                game.addBonus(lPlayer);
+                
+                                v.printString("Which player had the most Destination tickets?");
+                for(int i=0;i<allPlayers.length;i++){
+                    v.printString((i+1) + ".\t" + allPlayers[i].getpName());
+                }
+                choice = v.inInt();
+                do{
+                    cont = false;
+                    switch(choice){
+                    case 1:
+                        v.printString(allPlayers[0].getpName() + " has the most destination tickets!");
+                        tPlayer = allPlayers[0];
+                        break;
+                    case 2:
+                        v.printString(allPlayers[1].getpName() + " has the most destination tickets!");
+                        tPlayer = allPlayers[1];
+                        break;
+                    case 3:
+                        v.printString(allPlayers[2].getpName() + " has the most destination tickets!");
+                        tPlayer = allPlayers[2];
+                        break;
+                    case 4:
+                        v.printString(allPlayers[3].getpName() + " has the most destination tickets!");
+                        tPlayer = allPlayers[3];
+                        break; 
+                    default:
+                        v.printString("Unknown value.");
+                        cont = true;
+                        break;
+                        }
+                }while(cont == true);
+                game.addBonus(tPlayer);
+                break;
+        }
+        //calcWinner
+        for(int i=0;i<allPlayers.length;i++){
+            if(allPlayers[i].getpScore() > highScore){
+                highScore=allPlayers[i].getpScore();
+                winner = allPlayers[i];
+            }
+        }
+        v.printString(v.a.winnerIs);
+        v.printString(winner.getpName() + "!!!!");
+        v.printString("Final Score:\t" + winner.getpScore());
+        v.enterToCont();
+        v.printString(v.a.thanks);
+        //exits the application
+        System.exit(0);
+    }
+    
+
 }

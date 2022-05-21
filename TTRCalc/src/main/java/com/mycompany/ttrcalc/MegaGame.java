@@ -13,6 +13,7 @@ public class MegaGame extends ClassicGame {
     
     public MegaGame(int pCount){
         super(pCount);
+        super.setGameType(4);
     }
     public void addBonus(Player lPlayer, Player tPlayer){
         int lBonus = 10;

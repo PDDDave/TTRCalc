@@ -13,6 +13,7 @@ public class USA1910Game extends ClassicGame {
 
     public USA1910Game(int pCount) {
         super(pCount);
+        super.setGameType(2);
     }
     
     public void addBonus (Player tPlayer){

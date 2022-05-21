@@ -13,6 +13,7 @@ public class BigCitiesGame extends ClassicGame {
     
     public BigCitiesGame(int pCount) {
         super(pCount);
+        super.setGameType(3);
     }
     
 }
